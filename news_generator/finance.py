@@ -1,0 +1,41 @@
+import requests
+import humanize
+
+api_key = '8964acbf6b347c9f18fcb17106398772'
+
+url = "https://financialmodelingprep.com/api/v3/quotes/index?apikey={}".format(api_key)
+
+url_oil = 'https://financialmodelingprep.com/api/v3/quote/CLUSD?apikey={}'.format(api_key)
+
+names = ['NASDAQ Composite', 'S&P 500', 'MOEX Russia Index']
+
+_t = humanize.i18n.activate("ru_RU")
+
+
+def sign(x):
+    if float(x) < 0:
+        return '-'
+    return '+'
+
+
+def percentage(x):
+    if float(x) < 0:
+        return str(x) + '%'
+    return '+' + str(x) + '%'
+
+
+def price(x):
+    return humanize.intcomma(x)
+
+
+def get_data():
+    data = requests.get(url).json()
+    out = {}
+    for name in names:
+        index = list(filter(lambda x: x['name'] == name, data))[0]
+        out[name] = [price(index['price']), sign(index['changesPercentage']), percentage(index['changesPercentage'])]
+
+    # нефть
+    data = requests.get(url_oil).json()[0]
+    out['Нефть'] = [price(data['price']), sign(data['changesPercentage']), percentage(data['changesPercentage'])]
+    return out

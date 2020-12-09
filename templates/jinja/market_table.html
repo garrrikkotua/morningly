@@ -1,0 +1,74 @@
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+        <tbody>
+            <tr>
+                <td class="pad5m">
+                </td>
+            </tr>
+            {% for i in market_data %}
+                <tr>
+                    <td class="pads10 pads6m" style="padding-bottom: 0;
+                    text-align: center; border-top: 1px solid #e6e6e6; mso-padding-alt: 0 20px 0 20px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                            <tbody>
+                                <tr>
+                                    <td align="center" valign="middle" class="padtb78 w15" width="100" style="padding-top: 7px;
+                                    padding-bottom: 8px; text-align: center; line-height: 1em">
+                                        {% if i[1][1] == '+' %}
+                                            <img src="https://eoa-editor.s3.amazonaws.com/22c7678192cf714d8cc376c5704d0528039bbdb1%2Fpositive.png" width="14" alt>
+                                        {% else %}
+                                            <img src="https://eoa-editor.s3.amazonaws.com/22c7678192cf714d8cc376c5704d0528039bbdb1%2Fnegative.png" width="14" alt>
+                                        {% endif %}
+                                    </td>
+
+                                    <td valign="middle" class="padtb10 w30" width="150" style="padding-top: 10px;
+                                    padding-bottom: 10px; text-align: center; line-height: 1em">
+                                        <p class="pad0 mar0" style="line-height: 22px; margin-top: 0; margin-bottom: 15px;
+                                        padding: 0; margin: 0; font-weight: bold; vertical-align: middle; line-height: 1em; text-align: left">
+                                            {{i[0]}}
+                                        </p>
+                                    </td>
+
+                                    <td valign="middle" class="padtb10 w30" width="205" style="padding-top: 10px;
+                                    padding-bottom: 10px; text-align: center; line-height: 1em">
+                                        <p class="pad0 mar0" style="line-height: 22px; margin-top: 0; margin-bottom: 15px;
+                                        padding: 0; margin: 0; font-weight: bold; vertical-align: middle; line-height: 1em; text-align: left">
+                                            {{i[1][0]}}
+                                        </p>
+                                    </td>
+
+                                    <td valign="middle" class="padtb10 w30 change-positive" width="205" style="padding-top: 10px;
+                                    padding-bottom: 10px; text-align: center; line-height: 1em">
+                                        {% if i[1][1] == '+' %}
+                                            <p class="pad0 mar0" style="line-height: 22px; margin-top: 0; margin-bottom: 15px;
+                                            padding: 0; margin: 0; font-weight: bold; vertical-align: middle; line-height: 1em; text-align: left;
+                                            color: #00be0f">
+                                                {{i[1][2]}}
+                                            </p>
+                                        {% else %}
+                                            <p class="pad0 mar0 change-negative" style="line-height: 22px; margin-top: 0; margin-bottom: 15px;
+                                            padding: 0; margin: 0; font-weight: bold; vertical-align: middle; line-height: 1em; text-align: left;
+                                            color: #ed1c24">
+                                                {{i[1][2]}}
+                                            </p>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td style="padding: 3px 15px 10px 15px">
+                        <p style="line-height:22px;margin-top:0;margin-bottom:15px;padding: 0; margin: 0; text-align: left; font-size: 13px;">
+                            *На момент закрытия
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 0px 15px 0px 5px; mso-padding-alt: 0px 15px 15px 5px;">
+                        {{ market_html|safe}}
+                    </td>
+                </tr>
+        </tbody>
+    </table>

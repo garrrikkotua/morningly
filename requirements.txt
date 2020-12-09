@@ -1,0 +1,17 @@
+asgiref==3.3.1
+beautifulsoup4==4.9.3
+bs4==0.0.1
+certifi==2020.11.8
+chardet==3.0.4
+Django==3.1.3
+django-anymail==8.1
+django-tinymce==3.1.0
+humanize==3.1.0
+idna==2.10
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+pytz==2020.4
+requests==2.25.0
+soupsieve==2.0.1
+sqlparse==0.4.1
+urllib3==1.26.2

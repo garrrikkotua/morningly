@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static "css/skeleton_stylesheet.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'email_website/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'email_website/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'email_website/favicon-16x16.png'%}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <link rel="manifest" href="{% static 'email_website/site.webmanifest'%}">
+    {% block title %}
+    <title> Morningly | Подписаться</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="header">
+        <div class="inner_header">
+            <div class="logo_container">
+                <img src="{% static 'email_website/morningly_logo_small.png' %}" alt="Morningly Logo">
+            </div>
+            <ul class="navigation">
+                <li>
+                    <div class="dropdown">
+                        <a onclick="myFunction()" class="dropbtn">Рассылка
+                            <i style="font-size:24px; color: rgb(242, 206, 0);" class="fa">&#xf0d7;</i>
+                        </a>
+                        <div id="myDropdown" class="dropdown-content">
+                            <div class="wpmve">
+                                <h5 class="dropdown-h5">Morningly Daily</h5>
+                                <a href="/">Подписаться</a>
+                                <a href="/stories">Истории</a>
+                                <a href="/daily/latest">Свежий Выпуск</a>
+                                <a href="/archive">Архив</a></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    {% include article_path %}
+
+    <script>
+        function myFunction() {
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown menu if the user clicks outside of it
+            window.onclick = function(event) {
+              if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+              }
+            }
+    </script>
+</body>
+</html>

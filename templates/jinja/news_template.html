@@ -1,0 +1,232 @@
+<html>
+<body style="width: 100%">
+
+<div style="width: 100vw">
+    <style>
+        @media only screen and (max-width:600px) {
+        body{margin-right:1px !important;margin-left:1px !important}
+        .clear{display:block !important;width:100% !important;text-align:center !important}
+        .clear p{margin-bottom:2px !important;margin-top:0 !important}
+        .clear img{width:160px !important}
+        .img-responsive{width:100% !important}
+        .c6{margin-right:2px !important;margin-left:2px !important}
+        .ticker{width:40% !important;text-align:center !important}
+        .symbol{display:block !important;margin:0 auto !important;text-align:center !important}
+        .pads10{padding-right:15px !important;padding-left:15px !important}
+        .pads6m{padding-right:6px !important;padding-left:6px !important}
+        .w30{width:30% !important}
+        }
+        @media screen and (max-width:370px) {
+        .pad5m{padding:5px !important}
+        .pcard370{padding:6px !important}
+        .pcard370 h3{padding:8px !important}
+        }
+        @media only screen and (max-width: 600px) {
+        body{margin-right:1px !important;margin-left:1px !important}
+        .clear{display:block !important;width:100% !important;text-align:center !important}
+        .clear p{margin-bottom:2px !important;margin-top:0px !important}
+        .clear img{width:160px !important}
+        .c6{margin-right:2px !important;margin-left:2px !important}
+        .ticker{width:40% !important;text-align:center !important}
+        .symbol{display:block !important;margin:0 auto !important;text-align:center !important}
+        .mso-symbol{display:inline-block !important;margin:0 auto !important;text-align:center !important}
+        .change-positive{float:none !important;margin:0 !important}
+        .mso-change-positive{float:none !important;margin:0 !important}
+        .change-negative{float:none !important;margin:0 !important}
+        .mso-change-negative{float:none !important;margin:0 !important}
+        }
+        @media screen and (max-width: 370px) {
+        .pad5m{padding:5px !important}
+        .pcard370{padding:6px !important}
+        .pcard370 h3{padding:8px !important}
+        }
+    </style>
+<div style="display: block; max-width: 670px; margin: 0 auto">
+    <div class="c6" style="margin-bottom: 7px">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+            <tbody>
+                <tr>
+                    <th class="card pcard" style="text-align: left; font-weight: 400;
+                     padding: 15px; font-family: Helvetica,Arial,sans-serif; font-size:16px; color:#333;
+                    display: block; background-color: #fff; border-radius: 15px; border:1px solid #e6e6e6; border-collapse: collapse">
+                        <!- -->
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                            <tbody>
+                                <tr>
+                                    <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: #000000;">
+                                        {{ date }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                            <tbody>
+                                <tr>
+                                    <td align="center" style="padding-top: 0px">
+                                        <p style="line-height: 22px; margin-top: 0; margin-bottom: 18px">
+                                            <a href="https://morningly.ru">
+                                                <img style="display: block; width: 100%;
+                                                 max-width: 450px; margin: 0 auto" width="450" alt="Morningly" src="data:image/png;base64,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">
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                                <tr>
+                                    <td style="padding-top: 20px">
+                                        {{ intro_html|safe }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END HEADER -->
+    <!-- START MARKETS -->
+    <div class="c7">
+        <div class="c6" style="margin-bottom: 7px">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+            <tbody>
+                <tr>
+                    <th class="card pcard" style="text-align: left; font-weight: 400;
+                     padding: 15px; font-family: Helvetica,Arial,sans-serif; font-size:16px; color:#333;
+                    display: block; background-color: #fff; border-radius: 15px; border:1px solid #e6e6e6; border-collapse: collapse">
+                        <!- -->
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                            <tbody>
+                                <tr>
+                                    <td class="pcard pcard370" style="padding: 15px">
+                                        <h3 style="font-family: Helvetica,Arial,sans-serif; font-size:16px; color: #f2ce00;
+                                        font-weight: 700; margin-top: 0; margin-bottom: 0">
+                                        РЫНКИ
+                                        </h3>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {% include "market_table.html" %}
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        {% for p in posts %}
+            <div class="c6" style="margin-bottom: 7px">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                    <tbody>
+                        <tr>
+                            <th class="card pcard" style="text-align: left; font-weight: 400;
+                             padding: 15px; font-family: Helvetica,Arial,sans-serif; font-size:16px; color:#333;
+                            display: block; background-color: #fff; border-radius: 15px; border:1px solid #e6e6e6; border-collapse: collapse">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 15px">
+                                                <h3 style="font-family: Helvetica,Arial,sans-serif; font-size:16px; color: #f2ce00;
+                                                font-weight: 700; margin-top: 0; margin-bottom: 0">
+                                                {{ p['header']|upper }}
+                                                </h3>
+                                                <h1 style="font-family:Helvetica,Arial,sans-serif;font-size:24px;color:#333;font-weight:700;margin-bottom:0;line-height:26px;margin-top:8px">
+                                                    <a>
+                                                        {{ p['title'] }}
+                                                    </a>
+                                                </h1>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                {% if p['image_link'] %}
+                                    <img style="display: block; width: 100%; max-width: 670px;" width="670px" src="{{ p['image_link'] }}" alt="{{ p['image_alt'] }}">
+                                {% endif %}
+                                {% if p['caption'] %}
+                                    <p style="line-height:22px;margin-top:0;margin-bottom:15px;padding-left:10px;margin-top:5px;margin-bottom:0px;line-height:14px;">
+                                        <small><em>{{ p['caption'] }}</em></small>
+                                    </p>
+                                {% endif %}
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 15px">
+                                                {{ p['html_text']|safe }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+        <table width="100%" bgcolor="#f2ce00" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+            <tbody>
+                <tr>
+                    <td align="center" style="text-align: center; padding: 15px;">
+                        <a href="https://www.facebook.com/MorninglyNews/" target="_blank" rel="noopener" style="text-decoration: none;" class="">
+                        <img alt="" style="display: inline-block; height: 22px; margin: 0 auto;" height="22" src="https://media.sailthru.com/5z8/1k4/4/2/5e8656a926ade.jpg">
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/Morningly" target="_blank" rel="noopener" style="text-decoration: none;" class="">
+                        <img alt="" style="display: inline-block; height: 20px; margin: 0 auto;" height="20" src="https://media.sailthru.com/5z8/1k4/4/2/5e8656c57be7c.jpg">
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/Morningly/" target="_blank" rel="noopener" style="text-decoration: none;" class="">
+                        <img alt="" style="display: inline-block; height: 22px; margin: 0 auto;" height="22" src="https://media.sailthru.com/5z8/1k4/4/2/5e8656e7447ac.jpg">
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.linkedin.com/company/Morningly/" target="_blank" rel="noopener" style="text-decoration: none;" class="">
+                        <img alt="" style="display: inline-block; height: 22px; margin: 0 auto;" height="22" src="https://media.sailthru.com/5z8/1k4/4/2/5e865706b232e.jpg">
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="100%" bgcolor="#E9EBF7" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+            <tbody>
+                <tr>
+                    <td align="left" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;text-align:left;border-bottom: 1px solid #c0c3cc;padding: 15px;">
+                        {% if authors %}
+                            <p style="line-height:22px;margin-top:0;margin-bottom:15px">Авторы:
+                                {% if authors | length > 2 %}
+                                    {% for autor in authors[:-2] %}
+                                        <a href="{{ autor.link }}" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333;border-bottom:2px solid #f2ce00;text-decoration:none;color:#333333" target="_blank" class="link" rel="noopener">{{ autor.name }}</a>,
+                                    {% endfor %}
+                                    <a href="{{ authors[-2].link }}" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333;border-bottom:2px solid #f2ce00;text-decoration:none;color:#333333" target="_blank" class="link" rel="noopener">{{ authors[-2].name }}</a>
+                                    и <a href="{{ authors[-1].link }}" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333;border-bottom:2px solid #f2ce00;text-decoration:none;color:#333333" target="_blank" class="link" rel="noopener">{{ authors[-1].name }}</a>
+                                {% elif authors | length == 2 %}
+                                    <a href="{{ authors[0].link }}" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333;border-bottom:2px solid #f2ce00;text-decoration:none;color:#333333" target="_blank" class="link" rel="noopener">{{ authors[0].name }}</a>
+                                    и <a href="{{ authors[1].link }}" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333;border-bottom:2px solid #f2ce00;text-decoration:none;color:#333333" target="_blank" class="link" rel="noopener">{{ authors[1].name }}</a>
+                                {% elif authors | length == 1 %}
+                                    <a href="{{ authors[0].link }}" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333;border-bottom:2px solid #f2ce00;text-decoration:none;color:#333333" target="_blank" class="link" rel="noopener">{{ authors[0].name }}</a>
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                        <p style="line-height:22px;margin-top:0;margin-bottom:15px">Вам переслали это письмо? Подписаться на рассылку <a href="/" target="_blank" rel="noopener" class="link" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333">здесь</a>.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #79787d; padding: 15px;">
+                        <a href="" target="_blank" class="link" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333">РЕКЛАМОДАТЕЛЯМ</a> // <a href="" target="_blank" class="link" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333">ВАКАНСИИ</a>
+                        <br><br>
+                        Отписаться <a href="{{ unsubscribe_url }}" target="_blank" class="link" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333"><font color="#f2ce00">здесь</font></a>.
+                        <br>
+                        Посмотреть политику конфидециальности <a href="https://www.morningly.ru/privacy" target="_blank" class="link" style="border-bottom:2px solid #f2ce00;text-decoration:none;color:#333"><font color="#f2ce00">здесь</font></a>.
+                        <br><br>
+                        Copyright ©2020 Morningly. All rights reserved.
+                        <br>
+                        Страна Россия, Город Москва
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END MARKETS -->
+    <!-- START ARTICLE -->
+</div>
+</div>
+</body>
+</html>

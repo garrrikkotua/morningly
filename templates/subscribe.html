@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %}
+    <title> Morningly | Подписаться</title>
+    {% endblock %}
+
+    {% block content %}
+    <div class="FullScreenLayout">
+        <div class="LandingPage">
+            <div class="LandingPageLeft">
+                <img alt="morningly logo" src="{% static 'email_website/morningly_logo_small.png' %}">
+                <h3 class="main-h3">Новости прямо в ящик</h3>
+                <p>Подпишитесь на Morningly - лучшее о бизнесе и технологиях за 5 минут и менее.
+                </p>
+                <div class="LandingPageSubscribe">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit" value="Submit"><strong>Подписаться</strong></button>
+                    </form>
+                </div>
+                {% if messages %}
+                    <br>
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="LandingPageRight">
+                <div class="phone-image"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

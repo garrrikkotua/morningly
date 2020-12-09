@@ -1,0 +1,179 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.LandingPage {
+    display: grid;
+    grid-template-columns: 1fr 0fr;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.LandingPageSubscribe {
+    max-width: 600px;
+    background-color: rgb(242, 206, 0);
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 0.063em 0.313em 0px, rgba(0, 0, 0, 0.1) 0px 0.438em 1.063em 0px;
+    padding: 0.5rem;
+    margin-top: 1.5rem;
+    border-radius: 0.25rem;
+}
+
+form {
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    display: flex;
+    box-sizing: border-box;
+}
+
+input {
+    margin-right: 0.5rem;
+    flex: 1 1 0%;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(222, 226, 230);
+    transition: all 200ms ease-in-out 0s;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+button {
+    background: rgb(242, 206, 0);
+    color: rgb(0, 0, 0);
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0px;
+    font-weight: 500;
+    box-shadow: none;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: center;
+    border-radius: 0.25rem;
+    transition: all 200ms ease 0s;
+    border: none;
+    min-height: 40px;
+    min-width: 40px;
+    padding: 0.5rem 1rem;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    text-transform: none;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+img {
+    object-fit: contain;
+    align-self: start;
+    box-sizing: border-box;
+    border-style: none;
+}
+
+p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    letter-spacing: 0px;
+    margin-top: 0px;
+}
+
+.main-h3 {
+    font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 2em;
+    margin-bottom: 1.25rem;
+    color: rgb(242, 206, 0);
+    margin-top: 1rem;
+    box-sizing: border-box;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.phone-image {
+    background: url("morningly_ready.png") center / contain no-repeat;
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+}
+
+.LandingPageRight {
+    background-color: rgb(242, 206, 0);
+    display: flex;
+    width: 40vw;
+}
+
+.LandingPageLeft {
+    display: inline-flex;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    margin-top: 3rem;
+    padding: 0px 1rem;
+    max-width: 700px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 16px;
+        min-height: 0vw;
+    }
+    .LandingPageRight {
+        visibility: hidden;
+    }
+
+     .LandingPage {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+        input {
+        width: 100%;
+        }
+
+}
+
+@media (min-width: 576px) {
+    .LandingPageLeft {
+        -webkit-box-pack: center;
+        justify-content: center;
+        padding-left: 3rem;
+        margin-top: 0px;
+    }
+
+}
+
+.alert {
+    max-width: 600px;
+    display: inline-block;
+}

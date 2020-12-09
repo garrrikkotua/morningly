@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    display: block;
+    background: white;
+    box-sizing: border-box;
+    padding: 1rem 0px;
+    box-shadow: rgba(0, 0, 0, 0.075) 0px 0.125rem 0.25rem;
+}
+
+.inner_header {
+    width: 90%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.logo_container {
+    height: 100%;
+    display: table;
+    float: left;
+}
+
+.logo_container img{
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.navigation {
+    float: right;
+    height: 100%;
+    cursor: pointer;
+}
+
+.navigation li {
+    height: 100%;
+    display: table;
+    float: left;
+    padding: 0px 20px;
+}
+
+.navigation a {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    color: rgb(242, 206, 0);
+    font-size: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.navigation a svg{
+    box-sizing: border-box;
+    transform: translateY(2px);
+    transition: all 250ms ease-in-out 0s;
+
+}
+
+.dropbtn {
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: snow;
+  border-top: 4px solid;
+  min-width: 160px;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 0.063em 0.313em 0px, rgba(0, 0, 0, 0.1) 0px 0.438em 1.063em 0px;
+  transition: all 300ms ease-in-out 0s;
+  overflow-y: auto;
+  white-space: nowrap;
+  margin: 0px;
+  padding: 0px;
+  height: auto;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  color: rgb(242, 206, 0);
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.rotate-caveat {
+    transform: rotate(-90deg);
+}
+
+.wpmve {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-h5 {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgb(242, 206, 0);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    margin-bottom: 0.5rem;
+    display: block;
+    margin-top: 0px;
+    font-size: 0.875rem;
+}
+
+rect.btn {
+  stroke:#fff;
+  fill:#fff;
+  fill-opacity:0;
+  stroke-opacity:0;
+}

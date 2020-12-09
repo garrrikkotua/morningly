@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Morningly | Спасибо, что подписались!</title>
+{% endblock %}
+
+{% block content %}
+    <div class="FullScreenLayout">
+        <div class="LandingPage">
+            <div class="LandingPageLeft">
+                <img alt="morningly logo" src="{% static 'email_website/morningly_logo_small.png' %}">
+                <h3 class="main-h3">Спасибо, что подписались!</h3>
+                <p>В данный момент мы набираем базу подписчиков. Мы начнем рассылать новости, как только получим <strong>100 первых пользователей</strong>.
+                    Ждём с нетерпением!
+                </p>
+                <p><strong>P.S:</strong> Вы стали нашим подписчиком <strong>#{{ subscribers_count }}!</strong></p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
