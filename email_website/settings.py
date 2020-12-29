@@ -24,10 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'b!6@07!l=7z@iaie*ek1qk5f4due7h3i#$r1rnok0raqf_1%d3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
