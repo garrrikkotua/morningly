@@ -7,6 +7,8 @@ import datetime
 from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.views.generic.list import ListView
+from django.db.models import Q
 
 from .forms import SubscriptionForm
 from .models import Subscription, Article
@@ -17,13 +19,13 @@ from .settings import DEFAULT_FROM_EMAIL
 def show_article(request, day, month, year):
     date = datetime.date(year, month, day)
     article = get_object_or_404(Article, pub_date=date, status=Article.PUBLISHED)
-    return render(request, 'skeleton.html', {'article_path': article.path})
+    return render(request, 'skeleton.html', {'article_path': article.path, 'email_topic': article.headline[2:]})
 
 
 # показываем самую последнюю статью
 def show_latest(request):
-    article = Article.objects.filter(pub_date__isnull=False, status=Article.PUBLISHED).latest('pub_date')[0]
-    return render(request, 'skeleton.html', {'article_path': article.path})
+    article = Article.objects.filter(pub_date__isnull=False, status=Article.PUBLISHED).latest('pub_date')
+    return render(request, 'skeleton.html', {'article_path': article.path, 'email_topic': article.headline[2:]})
 
 
 # подписываемся на основную рассылку
@@ -40,9 +42,10 @@ def subscribe(request):
             user = Subscription(email=form.cleaned_data['email'])
             user.save()
             # формируем приветсвенное письмо
-            subject = '☕ Подтвердите email'
+            subject = '☀️ Подтвердите email'
             html_message = render_to_string('emails/confirm_email.html',
-                                            {'link': request.build_absolute_uri(user.confirm_email_url())})
+                                            {'uuid': user.unique_id, 'slug': user.conf_string,
+                                             'request': request})
             plain_message = strip_tags(html_message)
             from_email = DEFAULT_FROM_EMAIL
             to = user.email
@@ -65,9 +68,10 @@ def unsubscribe(request, uuid):
         return render(request, 'unsubscribe.html', {'email': user.email})
     if request.method == "POST":
         user = get_object_or_404(Subscription, unique_id=uuid)
-        user.subscribed_to_daily = False
+        email = user.email
+        user.delete()
         messages.success(request, 'Вы успешно отписались от рассылки Morningly')
-        return render(request, 'unsubscribe.html', {'email': user.email})
+        return render(request, 'unsubscribe.html', {'email': email})
 
 
 def confirm_email(request, slug):
@@ -79,3 +83,30 @@ def confirm_email(request, slug):
 
 def thanks_for_subscribing(request):
     return render(request, 'thanks_for_subscribing.html', {'subscribers_count': Subscription.objects.count()})
+
+
+def privacy(request):
+    return render(request, "privacy.html")
+
+
+def responsibility(request):
+    return render(request, "responsibility.html")
+
+
+def contacts(request):
+    return render(request, "contacts.html")
+
+
+class ArchiveView(ListView):
+
+    model = Article
+    template_name = 'archive.html'
+    ordering = ['-pub_date']
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get('q')
+        if query:
+            return Article.objects.filter(
+                (Q(headline__icontains=query.lower()) | Q(intro_html__icontains=query.lower())) & (Q(status=Article.PUBLISHED))
+            )
+        return Article.objects.order_by('-pub_date')[:10]

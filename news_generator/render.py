@@ -26,6 +26,8 @@ class ArticleRenderer:
             self.market_html = article.market_html
             self.writers = list(article.writers.all())
             self.posts = article.post_set.all()
+            self.article_url = article.article_url()
+            self.subscribe_url = article.subscribe_url()
 
         else:
             self.date = params['pub_date']
@@ -75,8 +77,9 @@ class ArticleRenderer:
             market_html=self.market_html,
             authors=self.writers,
             posts=self.posts,
-            unsubscribe='',
-
+            article_url=self.article_url,
+            subscribe_url=self.subscribe_url,
+            unsubscribe_url='',
         )
 
     def render_article(self):
@@ -92,6 +95,6 @@ class ArticleRenderer:
     def render_for_user(self, user):
         template = env.get_template('news_template.html')
         params = self.pack_parameters()
-        params['unsubscribe'] = user.unsubscribe_url()
+        params['unsubscribe_url'] = user.unsubscribe_url()
         return template.render(**params)
 

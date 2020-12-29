@@ -8,11 +8,15 @@
     {% block content %}
         <div class="FullScreenLayout">
         {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
+            <br>
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endif %}
         <div class="LandingPage">
             <div class="LandingPageLeft">
@@ -21,7 +25,10 @@
                 <p>Если вы уверены, что хотите отписаться от рассылки, нажмите на кнопку внизу.
                 </p>
                 <p><strong>Ваш email</strong>: {{ email }}</p>
-                <button type="submit" formmethod="post" value="Subscribe">Отписаться</button>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <button type="submit" value="Submit">Отписаться</button>
+                </form>
             </div>
         </div>
     </div>

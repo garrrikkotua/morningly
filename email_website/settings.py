@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'anymail',
     'email_website',
     'tinymce',
 ]
+
+SITE_ID = 6
 
 ANYMAIL = {
     "MAILGUN_API_KEY": "4e5b4436be6d4af3abe52d1179fbe99b-4879ff27-7aad301c",

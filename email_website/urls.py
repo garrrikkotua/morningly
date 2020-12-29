@@ -18,12 +18,16 @@ from django.urls import path, include
 from email_website import views
 
 urlpatterns = [
-    path('', views.subscribe),
+    path('', views.subscribe, name='subscribe'),
     path('admin/', admin.site.urls),
     path('daily/<int:day>-<int:month>-<int:year>', views.show_article, name='show-article'),
     path('daily/unsubscribe/<uuid:uuid>', views.unsubscribe, name='unsubscribe'),
     path('confirm/<slug:slug>', views.confirm_email, name='confirm-email'),
-    path('daily/latest/', views.show_latest),
+    path('daily/latest/', views.show_latest, name='latest'),
+    path('archive/', views.ArchiveView.as_view(), name='archive'),
     path('thanks/', views.thanks_for_subscribing),
+    path('privacy/', views.privacy, name='privacy'),
+    path('responsibility/', views.responsibility, name='responsibility'),
+    path('contacts/', views.contacts, name='contacts'),
     path('tinymce/', include('tinymce.urls'))
 ]
