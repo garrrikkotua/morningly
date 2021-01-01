@@ -24,9 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'b!6@07!l=7z@iaie*ek1qk5f4due7h3i#$r1rnok0raqf_1%d3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+ALLOWED_HOSTS = ['www.morningly.ru', 'morningly.ru']
 
 # Application definition
 
@@ -43,7 +46,7 @@ INSTALLED_APPS = [
     'tinymce',
 ]
 
-SITE_ID = 6
+SITE_ID = 2
 
 ANYMAIL = {
     "MAILGUN_API_KEY": "4e5b4436be6d4af3abe52d1179fbe99b-4879ff27-7aad301c",
@@ -92,8 +95,11 @@ WSGI_APPLICATION = 'email_website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'igorkotua$morningly',
+        'USER': 'igorkotua',
+        'PASSWORD': 'databaseinferiO',
+        'HOST': 'igorkotua.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -134,12 +140,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+MEDIA_ROOT = '/home/igorkotua/morningly/media'
+MEDIA_URL = '/media/'
+STATIC_ROOT = '/home/igorkotua/morningly/static'
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-
 
 # TinyMCE Settings
 TINYMCE_JS_URL = 'https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js'

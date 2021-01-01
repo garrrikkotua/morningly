@@ -11,7 +11,7 @@ from django.views.generic.list import ListView
 from django.db.models import Q
 
 from .forms import SubscriptionForm
-from .models import Subscription, Article
+from .models import Subscription, Article, Post
 from .settings import DEFAULT_FROM_EMAIL
 
 
