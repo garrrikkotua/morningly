@@ -17,7 +17,6 @@ class ArticleAdmin(admin.ModelAdmin):
 
     exclude = ('path', 'sending_time',)
 
-
     list_display = (
         'pub_date',
         'headline',

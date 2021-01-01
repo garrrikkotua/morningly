@@ -100,32 +100,34 @@
                     <!-- END HEADER -->
                     <!-- START MARKETS -->
                     <div class="c7">
-                        <div class="c6" style="margin-bottom: 7px">
-                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
-                            <tbody>
-                                <tr>
-                                    <th class="card pcard" style="text-align: left; font-weight: 400;
-                                     padding: 15px; font-family: Helvetica,Arial,sans-serif; font-size:16px; color:#333;
-                                    display: block; background-color: #fff; border-radius: 15px; border:1px solid #e6e6e6; border-collapse: collapse">
-                                        <!- -->
-                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="pcard pcard370" style="padding: 15px">
-                                                        <h3 style="font-family: Helvetica,Arial,sans-serif; font-size:16px; color: #f2ce00;
-                                                        font-weight: 700; margin-top: 0; margin-bottom: 0">
-                                                        РЫНКИ
-                                                        </h3>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        {% include "market_table.html" %}
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
+                        {% if show_market %}
+                            <div class="c6" style="margin-bottom: 7px">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                                <tbody>
+                                    <tr>
+                                        <th class="card pcard" style="text-align: left; font-weight: 400;
+                                         padding: 15px; font-family: Helvetica,Arial,sans-serif; font-size:16px; color:#333;
+                                        display: block; background-color: #fff; border-radius: 15px; border:1px solid #e6e6e6; border-collapse: collapse">
+                                            <!- -->
+                                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pcard pcard370" style="padding: 15px">
+                                                            <h3 style="font-family: Helvetica,Arial,sans-serif; font-size:16px; color: #f2ce00;
+                                                            font-weight: 700; margin-top: 0; margin-bottom: 0">
+                                                            РЫНКИ
+                                                            </h3>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            {% include "market_table.html" %}
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        {% endif %}
                         {% for p in posts %}
                             <div class="c6" style="margin-bottom: 7px">
                                 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse">

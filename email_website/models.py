@@ -80,15 +80,34 @@ class Article(models.Model):
         (PUBLISHED, 'Опубликовано'),
         (NOT_APPROVED, 'Не одобрено к публикации'),
     ]
-    pub_date = models.DateField(unique=True)
-    headline = models.CharField(max_length=200)
-    intro_html = HTMLField()
-    market_html = HTMLField()
-    writers = models.ManyToManyField(Writer)
+    pub_date = models.DateField(
+        unique=True,
+        help_text='Дата выхода выпуска. Она отображается в верхнем левом углу письма'
+    )
+    headline = models.CharField(
+        max_length=200,
+        help_text='Название выпуска. Оно же тема письма',
+    )
+    intro_html = HTMLField(
+        help_text='Текст вступления'
+    )
+    show_market = models.BooleanField(
+        default=True,
+        help_text='Если галочка выключена, то рыночная информация не добавляется в статью, и market_html игнорируется.'
+    )
+    market_html = HTMLField(
+        blank=True,
+        help_text='Текст про ситуацию на рынке'
+    )
+    writers = models.ManyToManyField(
+        Writer,
+        help_text='Авторы выпуска'
+    )
     status = models.CharField(
         max_length=2,
         choices=STATUS_LIST,
         default=IN_PROGRESS,
+        help_text='Статус выпуска. Управляется только админом.'
     )
     path = models.CharField(max_length=200)
     sending_time = models.DateTimeField(default=datetime(1970, 1, 1), validators=[MinValueValidator(datetime.now)])
@@ -171,13 +190,35 @@ class Article(models.Model):
 
 class Post(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    position_in_article = models.IntegerField()
-    header = models.CharField(max_length=100)
-    title = models.CharField(max_length=100, blank=True)
-    image_link = models.URLField(blank=True)
-    image_alt = models.CharField(max_length=50, blank=True)
-    caption = models.CharField(max_length=50, blank=True)
-    html_text = HTMLField()
+    position_in_article = models.IntegerField(
+        help_text='Порядковыый номер статьи в выпуске'
+    )
+    header = models.CharField(
+        max_length=100,
+        help_text='Название раздела'
+    )
+    title = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text='Название статьи'
+    )
+    image_link = models.URLField(
+        blank=True,
+        help_text='Ссылка на картинку или gif'
+    )
+    image_alt = models.CharField(
+        max_length=50,
+        blank=True,
+        help_text='Если картинка не загрузится, будет написан этот текст'
+    )
+    caption = models.CharField(
+        max_length=50,
+        blank=True,
+        help_text='Подпись под картинкой'
+    )
+    html_text = HTMLField(
+        help_text='Текст статьи'
+    )
 
     class Meta:
         ordering = ['position_in_article']

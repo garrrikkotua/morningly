@@ -24,6 +24,7 @@ class ArticleRenderer:
             self.intro_html = article.intro_html
             self.market_data = self.get_market_data()
             self.market_html = article.market_html
+            self.show_market = article.show_market
             self.writers = list(article.writers.all())
             self.posts = article.post_set.all()
             self.article_url = article.article_url()
@@ -34,6 +35,7 @@ class ArticleRenderer:
             self.intro_html = params['intro_html']
             self.market_data = self.get_market_data()
             self.market_html = params['market_html']
+            self.show_market = params['show_market']
             self.writers = params['writers']
             self.posts = []
 
@@ -75,6 +77,7 @@ class ArticleRenderer:
             intro_html=self.intro_html,
             market_data=self.market_data,
             market_html=self.market_html,
+            show_market=self.show_market,
             authors=self.writers,
             posts=self.posts,
             article_url=self.article_url,
