@@ -49,7 +49,7 @@ class Subscription(models.Model):
     def full_unsubscribe_url(unique_id):
         domain = Site.objects.get_current().domain
         return '{domain}{path}'.format(
-            domain=domain[:-1],
+            domain=domain,
             path=reverse('unsubscribe', kwargs={'uuid': unique_id})
         )
 
@@ -126,7 +126,7 @@ class Article(models.Model):
     def article_url(self):
         domain = Site.objects.get_current().domain
         return '{domain}{path}'.format(
-            domain=domain[:-1],
+            domain=domain,
             path=reverse('show-article', kwargs={
                 'day': self.pub_date.day,
                 'month': self.pub_date.month,
