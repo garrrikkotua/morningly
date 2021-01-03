@@ -7,6 +7,7 @@ from email_website.forms import PrepareForSendingForm
 from datetime import datetime
 from django.utils import timezone
 from django.shortcuts import render
+from django.views.decorators.cache import never_cache
 
 
 class PostInline(admin.StackedInline):
@@ -95,6 +96,7 @@ class ArticleAdmin(admin.ModelAdmin):
             context,
         )
 
+    @never_cache
     def response_change(self, request, obj):
         if "preview" in request.POST:
             template_path = obj.preview_article()
