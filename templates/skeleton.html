@@ -57,7 +57,11 @@
             <span class="readers">Читатели Morningly</span>
             <hr class="divider">
         </div>
-        {% include article_path %}
+        {% if article_path %}
+            {% include article_path %}
+        {% else %}
+            {{ article_html|safe }}
+        {% endif %}
     {% endblock %}
 
 

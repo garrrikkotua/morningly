@@ -124,6 +124,12 @@ class Article(models.Model):
         path = renderer.render_article()
         return path
 
+    def render_as_string(self):
+        self.save()
+        renderer = ArticleRenderer(article=self)
+        string = renderer.render_as_string()
+        return string
+
     def article_url(self):
         domain = Site.objects.get_current().domain
         return '{domain}{path}'.format(

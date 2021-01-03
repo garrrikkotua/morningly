@@ -95,6 +95,16 @@ class ArticleRenderer:
             f.write(rendered_template)
         return path + '/news.html'
 
+    def render_as_string(self):
+        path = self.create_path()
+        template = env.get_template('news_template.html')
+        params = self.pack_parameters()
+        rendered_template = template.render(**params)
+        Path(path).mkdir(parents=True, exist_ok=True)
+        with open(path + '/news.html', 'w', encoding='utf-8') as f:
+            f.write(rendered_template)
+        return rendered_template
+
     def render_for_user(self, user):
         template = env.get_template('news_template.html')
         params = self.pack_parameters()

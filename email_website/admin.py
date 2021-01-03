@@ -102,9 +102,7 @@ class ArticleAdmin(admin.ModelAdmin):
     def preview_view(self, request, article_id, *args, **kwargs):
         article = self.get_object(request, article_id)
 
-        context = {'title': 'Предпросмотр статьи'}
-
-        return render(request, article.path, context)
+        return HttpResponse(article.render_as_string())
 
     @never_cache
     def response_change(self, request, obj):

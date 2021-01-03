@@ -19,13 +19,13 @@ from .settings import DEFAULT_FROM_EMAIL
 def show_article(request, day, month, year):
     date = datetime.date(year, month, day)
     article = get_object_or_404(Article, pub_date=date, status=Article.PUBLISHED)
-    return render(request, 'skeleton.html', {'article_path': article.path, 'email_topic': article.headline[2:]})
+    return render(request, 'skeleton.html', {'article_html': article.render_as_string(), 'email_topic': article.headline[2:]})
 
 
 # показываем самую последнюю статью
 def show_latest(request):
     article = Article.objects.filter(pub_date__isnull=False, status=Article.PUBLISHED).latest('pub_date')
-    return render(request, 'skeleton.html', {'article_path': article.path, 'email_topic': article.headline[2:]})
+    return render(request, 'skeleton.html', {'article_html': article.render_as_string(), 'email_topic': article.headline[2:]})
 
 
 # подписываемся на основную рассылку
