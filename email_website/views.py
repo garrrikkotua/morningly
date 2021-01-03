@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 import datetime
-from django.core import mail
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.views.generic.list import ListView
@@ -42,15 +42,22 @@ def subscribe(request):
             user = Subscription(email=form.cleaned_data['email'])
             user.save()
             # формируем приветсвенное письмо
-            subject = '☀️ Подтвердите email'
             html_message = render_to_string('emails/confirm_email.html',
                                             {'uuid': user.unique_id, 'slug': user.conf_string,
                                              'request': request})
             plain_message = strip_tags(html_message)
-            from_email = DEFAULT_FROM_EMAIL
-            to = user.email
             # отправляем email
-            mail.send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+            message = EmailMultiAlternatives(
+                subject='☀️ Подтвердите email',
+                body=plain_message,
+                from_email=DEFAULT_FROM_EMAIL,
+                to=[user.email],
+            )
+            message.attach_alternative(html_message, "text/html")
+            message.esp_extra = {
+                'o:tag': ['Opt-In'],
+            }
+            message.send()
 
             # отправили на страницу спасибо
             return HttpResponseRedirect('/thanks/')

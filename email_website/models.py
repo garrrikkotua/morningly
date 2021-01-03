@@ -163,6 +163,11 @@ class Article(models.Model):
             if not right_now:
                 message.esp_extra = {
                     'o:deliverytime': format_datetime(self.sending_time),
+                    'o:tag': ['Newsletter'],
+                }
+            else:
+                message.esp_extra = {
+                    'o:tag': ['Newsletter'],
                 }
             message.send()
 
