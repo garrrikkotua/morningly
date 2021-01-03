@@ -12,9 +12,7 @@ class SubscriptionForm(forms.Form):
 class PrepareForSendingForm(forms.Form):
     sending_date = forms.DateField(label='Дата отправки', widget=AdminDateWidget(attrs={'id': 'id_sending_date'}))
     sending_time = forms.TimeField(label='Время отправки', widget=AdminTimeWidget(attrs={'id': 'id_sending_time'}))
-    right_now = forms.BooleanField(label='Отправить прямо сейчас', widget=forms.CheckboxInput(
-        attrs={'id': 'id_check_box'})
-    )
+    right_now = forms.BooleanField(label='Отправить прямо сейчас', required=False, initial=False)
 
     def clean(self):
         cleaned_data = super().clean()
