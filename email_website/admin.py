@@ -1,12 +1,12 @@
 from django.contrib import admin
 from email_website.models import Subscription, Writer, Article, Post
 from django.http import HttpResponseRedirect, HttpResponse
-from django.template.response import TemplateResponse
 from django.urls import reverse, path
 from django.utils.html import format_html
 from email_website.forms import PrepareForSendingForm
 from datetime import datetime
 from django.utils import timezone
+from django.shortcuts import render
 
 
 class PostInline(admin.StackedInline):
@@ -89,7 +89,7 @@ class ArticleAdmin(admin.ModelAdmin):
         context['article'] = article
         context['title'] = 'Запланировать отправку'
 
-        return TemplateResponse(
+        return render(
             request,
             'admin/email_website/article/article_action.html',
             context,
@@ -100,7 +100,7 @@ class ArticleAdmin(admin.ModelAdmin):
             template_path = obj.preview_article()
             obj.path = template_path
             obj.save()
-            return TemplateResponse(request, template_path)
+            return render(request, template_path)
         elif "publish" in request.POST:
             obj.status = Article.PUBLISHED
             template_path = obj.preview_article()

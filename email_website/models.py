@@ -119,6 +119,7 @@ class Article(models.Model):
         return '{} : {}'.format(self.pub_date, self.headline)
 
     def preview_article(self):
+        self.save()
         renderer = ArticleRenderer(article=self)
         path = renderer.render_article()
         return path
