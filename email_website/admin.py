@@ -33,7 +33,9 @@ class ArticleAdmin(admin.ModelAdmin):
         urls = super().get_urls()
         custom_urls = [
             path('send/<int:article_id>', self.admin_site.admin_view(self.send_view),
-                 name='prepare-for-sending')
+                 name='prepare-for-sending'),
+            path('preview/<int:article_id>', self.admin_site.admin_view(self.preview_view),
+                 name='preview-article')
         ]
         return custom_urls + urls
 
@@ -97,13 +99,23 @@ class ArticleAdmin(admin.ModelAdmin):
         )
 
     @never_cache
+    def preview_view(self, request, article_id, *args, **kwargs):
+        article = self.get_object(request, article_id)
+
+        context = {'title': 'Предпросмотр статьи'}
+
+        return render(request, article.path, context)
+
+    @never_cache
     def response_change(self, request, obj):
         if "preview" in request.POST:
+            obj.save()
             template_path = obj.preview_article()
             obj.path = template_path
             obj.save()
-            return render(request, template_path)
+            return HttpResponseRedirect(reverse('admin:preview-article', kwargs={'article_id': obj.id}))
         elif "publish" in request.POST:
+            obj.save()
             obj.status = Article.PUBLISHED
             template_path = obj.preview_article()
             obj.path = template_path
@@ -111,6 +123,7 @@ class ArticleAdmin(admin.ModelAdmin):
             date = obj.pub_date
             return HttpResponseRedirect(reverse('show-article', kwargs={'day': date.day, 'month': date.month, 'year': date.year}))
         elif 'send_to_approve' in request.POST:
+            obj.save()
             obj.status = Article.NOT_APPROVED
             template_path = obj.preview_article()
             obj.path = template_path
