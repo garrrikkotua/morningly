@@ -148,7 +148,7 @@ class Article(models.Model):
         return '{domain}'.format(domain=Site.objects.get_current().domain)
 
     def fetch_last_market_data(self):
-        self.market_data = ArticleRenderer.render_market()
+        self.market_data = ArticleRenderer.render_market(self)
         self.save()
 
     def send_article(self, right_now=False):

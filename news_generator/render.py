@@ -22,7 +22,7 @@ class ArticleRenderer:
             article = params['article']
             market_update = params['market_update']
             if market_update or article.market_data == "":
-                article.market_data = self.render_market()
+                article.market_data = self.render_market(article)
                 article.save()
             self.date = article.pub_date
             self.intro_html = article.intro_html
@@ -48,9 +48,10 @@ class ArticleRenderer:
         return get_data().items()
 
     @staticmethod
-    def render_market():
+    def render_market(article):
         template = env.get_template('market_table.html')
-        params = {'market_data': ArticleRenderer.get_market_data()}
+        params = {'market_data': ArticleRenderer.get_market_data(),
+                  'market_html': article.market_html}
         return template.render(**params)
 
     months = {'1': 'Января',
