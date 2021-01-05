@@ -156,7 +156,7 @@ class Article(models.Model):
             models.Q(subscribed_to_daily=True)
         ).values_list('email', 'unique_id')
 
-        for x in batch(recipients, 500):
+        for x in batch(recipients, 10):
             message = EmailMessage(
                 subject=self.headline,
                 from_email=DEFAULT_FROM_EMAIL,

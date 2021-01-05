@@ -18,6 +18,10 @@ class ArticleAdmin(admin.ModelAdmin):
 
     exclude = ('path', 'sending_time',)
 
+    search_fields = ['headline', 'intro_html', 'market_html']
+
+    list_filter = ('pub_date', 'status', 'sending_time', )
+
     list_display = (
         'pub_date',
         'headline',
@@ -131,7 +135,14 @@ class ArticleAdmin(admin.ModelAdmin):
         return super().response_change(request, obj)
 
 
-admin.site.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_filter = ('date_joined', 'subscribed_to_daily', 'people_referred_count',
+                   'email_confirmed')
+
+    search_fields = ('email', )
+
+
+admin.site.register(Subscription, SubscriptionAdmin)
 admin.site.register(Writer)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Post)
