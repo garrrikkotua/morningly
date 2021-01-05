@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.sites.models import Site
 from django.utils import timezone
 from tinymce.models import HTMLField
-from news_generator import ArticleRenderer
+from news_generator import ArticleRenderer, finance
 import uuid
 from django.urls import reverse
 from django.utils.crypto import get_random_string
@@ -95,10 +95,17 @@ class Article(models.Model):
         default=True,
         help_text='Если галочка выключена, то рыночная информация не добавляется в статью, и market_html игнорируется.'
     )
+
+    market_data = HTMLField(
+        blank=True,
+        help_text='Информация о рынке'
+    )
+
     market_html = HTMLField(
         blank=True,
         help_text='Текст про ситуацию на рынке'
     )
+
     writers = models.ManyToManyField(
         Writer,
         help_text='Авторы выпуска'
@@ -118,16 +125,11 @@ class Article(models.Model):
     def __str__(self):
         return '{} : {}'.format(self.pub_date, self.headline)
 
-    def preview_article(self):
+    def render_as_string(self, market_update=True):
         self.save()
-        renderer = ArticleRenderer(article=self)
-        path = renderer.render_article()
-        return path
-
-    def render_as_string(self):
-        self.save()
-        renderer = ArticleRenderer(article=self)
+        renderer = ArticleRenderer(article=self, market_update=market_update)
         string = renderer.render_as_string()
+        self.path = renderer.create_path()
         return string
 
     def article_url(self):
@@ -144,6 +146,10 @@ class Article(models.Model):
     @staticmethod
     def subscribe_url():
         return '{domain}'.format(domain=Site.objects.get_current().domain)
+
+    def fetch_last_market_data(self):
+        self.market_data = ArticleRenderer.render_market()
+        self.save()
 
     def send_article(self, right_now=False):
         if self.status != Article.PUBLISHED:
@@ -179,8 +185,7 @@ class Article(models.Model):
             message.send()
 
     def add_template(self):
-        with open(self.path, 'r', encoding='utf-8') as f:
-            template = f.read()
+        template = self.render_as_string()
 
         requests.delete(
             "{}/{}/templates/{}".format(

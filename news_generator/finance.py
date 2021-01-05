@@ -1,6 +1,5 @@
 import requests
 import humanize
-from cachetools.func import ttl_cache
 
 api_key = '8964acbf6b347c9f18fcb17106398772'
 
@@ -31,7 +30,6 @@ def price(x):
     return humanize.intcomma(x)
 
 
-@ttl_cache()
 def get_data():
     data = requests.get(url).json()
     out = {}

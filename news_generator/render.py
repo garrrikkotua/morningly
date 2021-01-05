@@ -20,9 +20,13 @@ class ArticleRenderer:
 
         if 'article' in params:  # instantiating with models.Article
             article = params['article']
+            market_update = params['market_update']
+            if market_update or article.market_data == "":
+                article.market_data = self.render_market()
+                article.save()
             self.date = article.pub_date
             self.intro_html = article.intro_html
-            self.market_data = self.get_market_data()
+            self.market_data = article.market_data
             self.market_html = article.market_html
             self.show_market = article.show_market
             self.writers = list(article.writers.all())
@@ -42,6 +46,12 @@ class ArticleRenderer:
     @staticmethod
     def get_market_data():
         return get_data().items()
+
+    @staticmethod
+    def render_market():
+        template = env.get_template('market_table.html')
+        params = {'market_data': ArticleRenderer.get_market_data()}
+        return template.render(**params)
 
     months = {'1': 'Января',
          '2': 'Февраля',
@@ -103,6 +113,7 @@ class ArticleRenderer:
         Path(path).mkdir(parents=True, exist_ok=True)
         with open(path + '/news.html', 'w', encoding='utf-8') as f:
             f.write(rendered_template)
+
         return rendered_template
 
     def render_for_user(self, user):

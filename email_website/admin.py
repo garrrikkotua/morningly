@@ -16,7 +16,7 @@ class PostInline(admin.StackedInline):
 
 class ArticleAdmin(admin.ModelAdmin):
 
-    exclude = ('path', 'sending_time',)
+    exclude = ('path', 'sending_time', 'market_data',)
 
     search_fields = ['headline', 'intro_html', 'market_html']
 
@@ -106,32 +106,37 @@ class ArticleAdmin(admin.ModelAdmin):
     def preview_view(self, request, article_id, *args, **kwargs):
         article = self.get_object(request, article_id)
 
-        return HttpResponse(article.render_as_string())
+        return HttpResponse(article.render_as_string(market_update=False))
 
     @never_cache
     def response_change(self, request, obj):
         if "preview" in request.POST:
             obj.save()
-            template_path = obj.preview_article()
-            obj.path = template_path
-            obj.save()
             return HttpResponseRedirect(reverse('admin:preview-article', kwargs={'article_id': obj.id}))
         elif "publish" in request.POST:
             obj.save()
             obj.status = Article.PUBLISHED
-            template_path = obj.preview_article()
-            obj.path = template_path
+            obj.fetch_last_market_data()
             obj.save()
             date = obj.pub_date
             return HttpResponseRedirect(reverse('show-article', kwargs={'day': date.day, 'month': date.month, 'year': date.year}))
         elif 'send_to_approve' in request.POST:
             obj.save()
             obj.status = Article.NOT_APPROVED
-            template_path = obj.preview_article()
-            obj.path = template_path
+            obj.fetch_last_market_data()
             obj.save()
             html = '<h1>Успешно отправлено главному редактору на проверку</h1>'
             return HttpResponse(html)
+        elif 'update_market_data' in request.POST:
+            obj.save()
+            obj.fetch_last_market_data()
+            obj.save()
+            url = reverse(
+                'admin:email_website_article_change',
+                args=[obj.id],
+                current_app=self.admin_site.name,
+            )
+            return HttpResponseRedirect(url)
         return super().response_change(request, obj)
 
 

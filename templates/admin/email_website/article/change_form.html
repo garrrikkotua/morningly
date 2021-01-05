@@ -3,6 +3,7 @@
 {% block submit_buttons_bottom %}
     {{ block.super }}
     <div class="submit-row">
+            <input type="submit" value="Обновить рыночные данные" name="update_market_data">
             <input type="submit" value="Предпросмотр" name="preview">
             {% if user.is_superuser %}
                 <input type="submit" value="Опубликовать" name="publish">
