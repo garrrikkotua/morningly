@@ -12,6 +12,7 @@ from django.core.mail import EmailMessage
 from django.core.validators import MinValueValidator
 from email.utils import format_datetime
 from datetime import datetime
+from time import sleep
 
 
 def default_random_string():
@@ -162,7 +163,7 @@ class Article(models.Model):
             models.Q(subscribed_to_daily=True)
         ).values_list('email', 'unique_id')
 
-        for x in batch(recipients, 10):
+        for x in batch(recipients, 50):
             message = EmailMessage(
                 subject=self.headline,
                 from_email=DEFAULT_FROM_EMAIL,

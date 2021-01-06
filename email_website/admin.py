@@ -71,6 +71,15 @@ class ArticleAdmin(admin.ModelAdmin):
             )
             return HttpResponseRedirect(url)
 
+        if not request.user.is_superuser:
+            self.message_user(request, 'Вы не админ. Вам нельзя отправлять письма')
+            url = reverse(
+                'admin:email_website_article_change',
+                args=[article.id],
+                current_app=self.admin_site.name,
+            )
+            return HttpResponseRedirect(url)
+
         if request.method == "GET":
             form = PrepareForSendingForm()
         else:
