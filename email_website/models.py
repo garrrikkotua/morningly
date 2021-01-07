@@ -242,4 +242,4 @@ class Post(models.Model):
         ordering = ['position_in_article']
 
     def __str__(self):
-        return self.title
+        return str(self.article.pub_date) + ": " + self.header + ": " + self.title
