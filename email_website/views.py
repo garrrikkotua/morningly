@@ -20,14 +20,16 @@ def show_article(request, day, month, year):
     date = datetime.date(year, month, day)
     article = get_object_or_404(Article, pub_date=date, status=Article.PUBLISHED)
     return render(request, 'skeleton.html', {'article_html': article.render_as_string(market_update=False),
-                                             'email_topic': article.headline[2:]})
+                                             'email_topic': article.headline[2:],
+                                             'description': str(article)})
 
 
 # показываем самую последнюю статью
 def show_latest(request):
     article = Article.objects.filter(pub_date__isnull=False, status=Article.PUBLISHED).latest('pub_date')
     return render(request, 'skeleton.html', {'article_html': article.render_as_string(market_update=False),
-                                             'email_topic': article.headline[2:]})
+                                             'email_topic': article.headline[2:],
+                                             'description': str(article)})
 
 
 # подписываемся на основную рассылку

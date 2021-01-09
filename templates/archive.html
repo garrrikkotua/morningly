@@ -1,6 +1,11 @@
 {% extends 'skeleton.html' %}
 {% load static %}
 
+{% block meta %}
+    <meta property="og:title" content="Morningly | Архив">
+    <meta property="og:description" content="Все выпуски Morningly. Собранные в одном месте.">
+{% endblock %}
+
 {% block style %}
     <link rel="stylesheet" href="{% static "css/archive_stylesheet.css" %}">
 {% endblock %}

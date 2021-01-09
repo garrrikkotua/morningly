@@ -3,6 +3,12 @@
 
     {% block meta %}
     <meta name="description" content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня.">
+    <meta property="og:title" content="Morningly | Подписаться">
+    <meta property="og:description" content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня.">
+    <meta property="og:image" content="https://morningly.s3.eu-central-1.amazonaws.com/images/og_image.png">
+    <meta property="og:url" content="{% url 'subscribe' %}">
+    <meta property="og:site_name" content="Morningly">
+    <meta property="og:type" content="website" />
     {% endblock %}
 
     {% block title %}

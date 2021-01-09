@@ -4,6 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня.">
+    <meta property="og:image" content="https://morningly.s3.eu-central-1.amazonaws.com/images/og_image.png">
+    <meta property="og:url" content="{{ request.get_full_path }}">
+    <meta property="og:site_name" content="Morningly">
+    <meta property="og:type" content="website" />
+    {% block meta %}
+        <meta property="og:title" content="Morningly | {{ email_topic }}">
+        <meta property="og:description" content="{{ description }}">
+    {% endblock %}
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'email_website/apple-touch-icon.png'%}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'email_website/favicon-32x32.png'%}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'email_website/favicon-16x16.png'%}">
