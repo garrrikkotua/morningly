@@ -120,4 +120,4 @@ class ArchiveView(ListView):
             return Article.objects.filter(
                 (Q(headline__icontains=query.lower()) | Q(intro_html__icontains=query.lower())) & (Q(status=Article.PUBLISHED))
             )
-        return Article.objects.order_by('-pub_date')[:10]
+        return Article.objects.filter(status=Article.PUBLISHED).order_by('-pub_date')[:10]
