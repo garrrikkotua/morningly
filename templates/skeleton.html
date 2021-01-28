@@ -13,7 +13,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня.">
-    <meta property="og:image" content="https://morningly.s3.eu-central-1.amazonaws.com/images/og_image.png">
+    {% block meta_img %}
+        <meta property="og:image" content="https://morningly.s3.eu-central-1.amazonaws.com/images/og_image.png">
+    {% endblock %}
     <meta property="og:url" content="http://morningly.ru{{ request.get_full_path }}">
     <meta property="og:site_name" content="Morningly">
     <meta property="og:type" content="website" />

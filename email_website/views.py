@@ -32,6 +32,12 @@ def show_latest(request):
                                              'description': str(article)})
 
 
+def show_stories(request, slug):
+    post = get_object_or_404(Post, slug=slug, article__status=Article.PUBLISHED)
+    form = SubscriptionForm()
+    return render(request, 'story.html', {'p': post, 'form': form})
+
+
 # подписываемся на основную рассылку
 def subscribe(request):
     # if this is a POST request we need to process the form data

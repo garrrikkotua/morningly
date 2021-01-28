@@ -25,6 +25,7 @@ urlpatterns = [
     path('confirm/<slug:slug>', views.confirm_email, name='confirm-email'),
     path('daily/latest/', views.show_latest, name='latest'),
     path('archive/', views.ArchiveView.as_view(), name='archive'),
+    path('daily/stories/<slug:slug>', views.show_stories, name='stories'),
     path('thanks/', views.thanks_for_subscribing),
     path('privacy/', views.privacy, name='privacy'),
     path('responsibility/', views.responsibility, name='responsibility'),
