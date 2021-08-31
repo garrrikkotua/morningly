@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.sites.models import Site
+from django.contrib.auth.models import User
 from django.utils import timezone
 from tinymce.models import HTMLField
 from news_generator import ArticleRenderer, finance
@@ -12,6 +13,8 @@ from django.core.mail import EmailMessage
 from django.core.validators import MinValueValidator
 from email.utils import format_datetime
 from datetime import datetime
+from unidecode import unidecode
+from django.utils.text import slugify
 from time import sleep
 
 
@@ -208,9 +211,13 @@ class Article(models.Model):
 
 class Post(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    post_online = models.BooleanField(null=True, blank=True,
+                                      help_text='Определяет, делать ли онлайн версию статьи или нет')
     position_in_article = models.IntegerField(
         help_text='Порядковыый номер статьи в выпуске'
     )
+    slug = models.SlugField(blank=True)
     header = models.CharField(
         max_length=100,
         help_text='Название раздела'
@@ -237,6 +244,17 @@ class Post(models.Model):
     html_text = HTMLField(
         help_text='Текст статьи'
     )
+
+    def create_slug(self):
+        return slugify(unidecode(self.header + " " + self.title))
+
+    def save(self, *args, **kwargs):
+        if self.title != '' and self.title is not None:
+            self.post_online = True
+            self.slug = self.create_slug()
+        else:
+            self.post_online = False
+        super(Post, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['position_in_article']

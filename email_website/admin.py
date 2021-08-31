@@ -13,8 +13,12 @@ from django.views.decorators.cache import never_cache
 class PostInline(admin.StackedInline):
     model = Post
 
+    exclude = ['created_by', 'slug', 'post_online']
+
 
 class ArticleAdmin(admin.ModelAdmin):
+
+    date_hierarchy = 'pub_date'
 
     exclude = ('path', 'sending_time', 'market_data',)
 
@@ -156,7 +160,18 @@ class SubscriptionAdmin(admin.ModelAdmin):
     search_fields = ('email', )
 
 
+class PostAdmin(admin.ModelAdmin):
+    date_hierarchy = 'article__pub_date'
+    exclude = ['created_by', 'slug']
+    search_fields = ['article', 'header', 'title']
+    list_filter = ('article', 'created_by',)
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+
 admin.site.register(Subscription, SubscriptionAdmin)
 admin.site.register(Writer)
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(Post)
+admin.site.register(Post, PostAdmin)
