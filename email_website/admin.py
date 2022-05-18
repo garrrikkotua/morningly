@@ -49,10 +49,10 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def prepare_for_sending(self, obj):
         return format_html(
-            '<a class="button" href="{}">Отправка</a>',
+            '<a class="button" href="{}">Sending</a>',
             reverse('admin:prepare-for-sending', kwargs={'article_id': obj.id})
         )
-    prepare_for_sending.short_description = 'Подготовка к отправке'
+    prepare_for_sending.short_description = 'Prepairing for sending'
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
@@ -67,7 +67,7 @@ class ArticleAdmin(admin.ModelAdmin):
         article = self.get_object(request, article_id)
 
         if article.status != Article.PUBLISHED:
-            self.message_user(request, 'Статья не опубликована. Её нельзя отправить')
+            self.message_user(request, "Article is not published. You can't send it")
             url = reverse(
                 'admin:email_website_article_change',
                 args=[article.id],
@@ -76,7 +76,7 @@ class ArticleAdmin(admin.ModelAdmin):
             return HttpResponseRedirect(url)
 
         if not request.user.is_superuser:
-            self.message_user(request, 'Вы не админ. Вам нельзя отправлять письма')
+            self.message_user(request, "You are not an admin. You can't send the email")
             url = reverse(
                 'admin:email_website_article_change',
                 args=[article.id],
@@ -94,8 +94,8 @@ class ArticleAdmin(admin.ModelAdmin):
                 dt = datetime.combine(sending_date, sending_time)
                 article.sending_time = timezone.make_aware(dt)
                 article.save()
-                article.send_article(right_now=form.cleaned_data['right_now'])  # отправляем request на mailgun
-                self.message_user(request, 'Отправка успешно запланирована')
+                article.send_article(right_now=form.cleaned_data['right_now'])  # sending request to mailgun
+                self.message_user(request, 'Sending scheduled succesfully')
                 url = reverse(
                     'admin:email_website_article_change',
                     args=[article.id],
@@ -107,7 +107,7 @@ class ArticleAdmin(admin.ModelAdmin):
         context['opts'] = self.model._meta
         context['form'] = form
         context['article'] = article
-        context['title'] = 'Запланировать отправку'
+        context['title'] = 'Schedule sending'
 
         return render(
             request,
@@ -138,7 +138,7 @@ class ArticleAdmin(admin.ModelAdmin):
             obj.status = Article.NOT_APPROVED
             obj.fetch_last_market_data()
             obj.save()
-            html = '<h1>Успешно отправлено главному редактору на проверку</h1>'
+            html = '<h1>Succesfully sent to the chief editor for approval</h1>'
             return HttpResponse(html)
         elif 'update_market_data' in request.POST:
             obj.save()

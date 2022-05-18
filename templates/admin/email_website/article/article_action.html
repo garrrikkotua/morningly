@@ -1,89 +1,71 @@
-{% extends "admin/change_form.html" %}
-{% load i18n admin_urls static admin_modify %}
+{% extends "admin/change_form.html" %} {% load i18n admin_urls static
+admin_modify %} {% block extrahead %} {{ block.super }}
+<script src="{% url 'admin:jsi18n' %}"></script>
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script src="/static/admin/js/jquery.init.js"></script>
+<script src="/static/admin/js/core.js"></script>
+<script src="/static/admin/js/inlines.js"></script>
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script src="/static/admin/js/actions.js"></script>
+<script src="/static/admin/js/urlify.js"></script>
+<script src="/static/admin/js/prepopulate.js"></script>
+<script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script>
+  (function ($) {
+    $(document).ready(function () {
+      $("#id_check_box").change(function () {
+        let dynamicField_1 = $("#id_sending_time");
+        let dynamicField_2 = $("#id_sending_date");
 
-{% block extrahead %}
-    {{ block.super }}
-    <script src="{% url 'admin:jsi18n' %}"></script>
-    <script src="/static/admin/js/vendor/jquery/jquery.js"></script>
-    <script src="/static/admin/js/jquery.init.js"></script>
-    <script src="/static/admin/js/core.js"></script>
-    <script src="/static/admin/js/inlines.js"></script>
-    <script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
-    <script src="/static/admin/js/actions.js"></script>
-    <script src="/static/admin/js/urlify.js"></script>
-    <script src="/static/admin/js/prepopulate.js"></script>
-    <script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
-    <script>
-        (function ($) {
-            $(document).ready(function () {
-                $('#id_check_box').change(function () {
-                    let dynamicField_1 = $('#id_sending_time');
-                    let dynamicField_2 = $('#id_sending_date');
-
-                    if ( this.checked ) {
-                        var d = new Date();
-                        dynamicField_1.val(`${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`);
-                        dynamicField_2.val(`${d.getDate()}.${d.getMonth()}.${d.getFullYear()}`);
-                        dynamicField_1.prop('disabled', true);
-                        dynamicField_2.prop('disabled', true);
-                    }
-                    else {
-                        dynamicField_1.prop('disabled', false);
-                        dynamicField_2.prop('disabled', false);
-                    }
-
-                });
-            });
-        })(django.jQuery);
-    </script>
-    {{ media }}
-    {{ form.media }}
-{% endblock %}
-
-
-{% block content %}
+        if (this.checked) {
+          var d = new Date();
+          dynamicField_1.val(
+            `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+          );
+          dynamicField_2.val(
+            `${d.getDate()}.${d.getMonth()}.${d.getFullYear()}`
+          );
+          dynamicField_1.prop("disabled", true);
+          dynamicField_2.prop("disabled", true);
+        } else {
+          dynamicField_1.prop("disabled", false);
+          dynamicField_2.prop("disabled", false);
+        }
+      });
+    });
+  })(django.jQuery);
+</script>
+{{ media }} {{ form.media }} {% endblock %} {% block content %}
 
 <div id="content-main">
+  <h1>
+    Choose the time to send the issue <strong>{{ article.headline }}</strong>
+  </h1>
 
-
-<h1>
-    Выберите время отправки для статьи <strong>{{ article.headline }}</strong>
-</h1>
-
-<h2>
-    Пожалуйтса, выбирайте время для отправки с умом. Перепроверьте статью ещё раз, перед тем как выбирать время отправки.
-    Отменить операцию отправки бывает довольно сложно.
-</h2>
+  <h2>
+    Please, be careful when selecting sending time. Doulbe check the article
+    before sending. Declining it is quite hard.
+  </h2>
 
   <form action="" method="POST">
-
-    {% csrf_token %}
-    {% if form.non_field_errors|length > 0 %}
-      <p class="errornote">
-          "Пожалуйста, исправьте ошибки ниже."
-      </p>
-      {{ form.non_field_errors }}
-    {% endif %}
+    {% csrf_token %} {% if form.non_field_errors|length > 0 %}
+    <p class="errornote">"Please, fix the issues below."</p>
+    {{ form.non_field_errors }} {% endif %}
 
     <fieldset class="module aligned">
       {% for field in form %}
-        <div class="form-row">
-          {{ field.errors }}
-          {{ field.label_tag }}
-          {{ field }}
-          {% if field.field.help_text %}
-          <p class="help">
-            {{ field.field.help_text|safe }}
-          </p>
-          {% endif %}
-        </div>
+      <div class="form-row">
+        {{ field.errors }} {{ field.label_tag }} {{ field }} {% if
+        field.field.help_text %}
+        <p class="help">{{ field.field.help_text|safe }}</p>
+        {% endif %}
+      </div>
       {% endfor %}
     </fieldset>
 
     <div class="submit-row">
-      <input type="submit" class="default" value="Запланировать отправку">
+      <input type="submit" class="default" value="Schedule sending" />
     </div>
-
   </form>
 </div>
 {% endblock %}

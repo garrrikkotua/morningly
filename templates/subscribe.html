@@ -1,51 +1,65 @@
-{% extends 'base.html' %}
-{% load static %}
-
-    {% block meta %}
-        <meta name="description" content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня.">
-        <meta property="og:title" content="Morningly | Подписаться">
-        <meta property="og:description" content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня.">
-        <meta property="og:image" content="https://morningly.s3.eu-central-1.amazonaws.com/images/og_image.png">
-        <meta property="og:url" content="http://morningly.ru">
-        <meta property="og:site_name" content="Morningly">
-        <meta property="og:type" content="website" />
-    {% endblock %}
-
-    {% block title %}
-        <title> Morningly | Подписаться</title>
-    {% endblock %}
-
-    {% block content %}
-    <div class="FullScreenLayout">
-        <div class="LandingPage">
-            <div class="LandingPageLeft">
-                <img alt="morningly logo" src="{% static 'email_website/morningly_logo_small.png' %}">
-                <h3 class="main-h3">Станьте умнее всего за 5 минут</h3>
-                <p>
-                    Ежедневная новостная рассылка о бизнесе и технологиях. Оставайтесь в курсе последних событий и начинайте утро с улыбки. Бесплатно.
-                </p>
-                <div class="LandingPageSubscribe">
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{ form }}
-                        <button type="submit" value="Submit"><strong>Подписаться</strong></button>
-                    </form>
-                </div>
-                {% if messages %}
-                    <br>
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="LandingPageRight">
-                <div class="phone-image"></div>
-            </div>
-        </div>
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<meta
+  name="description"
+  content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня."
+/>
+<meta property="og:title" content="Morningly | Подписаться" />
+<meta
+  property="og:description"
+  content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня."
+/>
+<meta
+  property="og:image"
+  content="https://morningly.s3.eu-central-1.amazonaws.com/images/og_image.png"
+/>
+<meta property="og:url" content="http://example.com" />
+<meta property="og:site_name" content="Morningly" />
+<meta property="og:type" content="website" />
+{% endblock %} {% block title %}
+<title>Morningly | Subscribe</title>
+{% endblock %} {% block content %}
+<div class="FullScreenLayout">
+  <div class="LandingPage">
+    <div class="LandingPageLeft">
+      <img
+        alt="morningly logo"
+        src="{% static 'email_website/morningly_logo_small.png' %}"
+      />
+      <h3 class="main-h3">Became smarter in under 5 minutes</h3>
+      <p>
+        Daily newsletter about business and technology. Stay up to date with the
+        latest news and jumpstart the morning with a smile. For free.
+      </p>
+      <div class="LandingPageSubscribe">
+        <form action="" method="post">
+          {% csrf_token %} {{ form }}
+          <button type="submit" value="Submit">
+            <strong>Subscribe</strong>
+          </button>
+        </form>
+      </div>
+      {% if messages %}
+      <br />
+      {% for message in messages %}
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible"
+        role="alert"
+      >
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+      </div>
+      {% endfor %} {% endif %}
     </div>
+    <div class="LandingPageRight">
+      <div class="phone-image"></div>
+    </div>
+  </div>
+</div>
 {% endblock %}

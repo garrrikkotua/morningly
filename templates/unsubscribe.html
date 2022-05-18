@@ -1,35 +1,31 @@
-{% extends 'base.html' %}
-{% load static %}
-
-    {% block title %}
-    <title> Morningly | Отписаться</title>
-    {% endblock %}
-
-    {% block content %}
-        <div class="FullScreenLayout">
-        {% if messages %}
-            <br>
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-        <div class="LandingPage">
-            <div class="LandingPageLeft">
-                <img alt="morningly logo" src="{% static 'email_website/morningly_logo_small.png' %}">
-                <h3 class="main-h3">Отписаться от рассылки</h3>
-                <p>Если вы уверены, что хотите отписаться от рассылки, нажмите на кнопку внизу.
-                </p>
-                <p><strong>Ваш email</strong>: {{ email }}</p>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <button type="submit" value="Submit">Отписаться</button>
-                </form>
-            </div>
-        </div>
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Morningly | Unsubscribe</title>
+{% endblock %} {% block content %}
+<div class="FullScreenLayout">
+  {% if messages %}
+  <br />
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+  {% endfor %} {% endif %}
+  <div class="LandingPage">
+    <div class="LandingPageLeft">
+      <img
+        alt="morningly logo"
+        src="{% static 'email_website/morningly_logo_small.png' %}"
+      />
+      <h3 class="main-h3">Unsubscribe from newsletter</h3>
+      <p>If you really, really want to subscribe - hit the button below</p>
+      <p><strong>Your email</strong>: {{ email }}</p>
+      <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" value="Submit">Unsubscribe</button>
+      </form>
     </div>
-    {% endblock %}
+  </div>
+</div>
+{% endblock %}

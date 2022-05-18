@@ -2,14 +2,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PCVKR36');
-    </script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Ежедневная email рассылка о бизнесе и технологиях. Информативная и остроумная, в ней есть всё для отличного начала дня.">
@@ -39,11 +31,6 @@
 
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCVKR36"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <nav class="navbar navbar-expand-lg navbar-light header">
             <div class="d-flex flex-row pl-lg-5 mr-auto">
                 <a class="navbar-brand pl-lg-5" href="/">
@@ -57,14 +44,14 @@
                 <ul class="navbar-nav">
                      <li class="nav-item dropdown mr-5 pr-5">
                         <a class="nav-link dropdown-toggle yellow-link" style="color: rgb(242, 206, 0)" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Рассылка
+                          Newsletter
                         </a>
                         <div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                             <div class="wpmve">
                                 <h5 class="dropdown-h5">Morningly Daily</h5>
-                                <a href="{% url "subscribe" %}">Подписаться</a>
-                                <a href="{% url "latest" %}">Свежий Выпуск</a>
-                                <a href="{% url "archive" %}">Архив</a>
+                                <a href="{% url "subscribe" %}">Subscribe</a>
+                                <a href="{% url "latest" %}">Fresh issue</a>
+                                <a href="{% url "archive" %}">Archive</a>
                             </div>
                         </div>
                     </li>
@@ -77,8 +64,8 @@
         <div class="newsletter-container">
             <h4 class="morningly">Morningly</h4>
             <h6 class="topic"><span role="img" aria-label="sun" class="">☀️</span> {{ email_topic }}</h6>
-            <span class="readers">Кому:</span>
-            <span class="readers">Читатели Morningly</span>
+            <span class="readers">To:</span>
+            <span class="readers">Morningly Readers</span>
             <hr class="divider">
         </div>
         {% if article_path %}
@@ -101,39 +88,39 @@
                         </div>
                         <li class="column-item">
                             <a href="{% url "subscribe" %}" class="footer-link">
-                                Подписаться
+                                Subscribe
                             </a>
                         </li>
                         <li class="column-item">
                             <a href="{% url "latest" %}" class="footer-link">
-                                Свежий выпуск
+                                Fresh issue
                             </a>
                         </li>
                         <li class="column-item">
                             <a href="{% url "archive" %}" class="footer-link">
-                                Архив
+                                Archive
                             </a>
                         </li>
                     </ul>
                     <ul class="links-column">
                         <div class="column-title">
                             <p class="styled-p">
-                                Другое
+                                Other
                             </p>
                         </div>
                         <li class="column-item">
                             <a href="{% url "privacy" %}" class="footer-link">
-                                Конфидециальность
+                                Privacy
                             </a>
                         </li>
                         <li class="column-item">
                             <a href="{% url "responsibility" %}" class="footer-link">
-                                Ответсвенность
+                                Responsibility
                             </a>
                         </li>
                         <li class="column-item">
                             <a href="{% url "contacts" %}" class="footer-link">
-                                Контакты
+                                Contacts
                             </a>
                         </li>
                     </ul>
@@ -179,7 +166,7 @@
                             </a>
                         </div>
                         <p class="kWQkcy">
-                            © 2020 Morningly
+                            © 2022 Morningly
                         </p>
                         <p class="kWQkcy">
                             All Rights Reserved.

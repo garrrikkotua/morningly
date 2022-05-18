@@ -1,14 +1,12 @@
-{% extends 'admin/change_form.html' %}
-
-{% block submit_buttons_bottom %}
-    {{ block.super }}
-    <div class="submit-row">
-            <input type="submit" value="Обновить рыночные данные" name="update_market_data">
-            <input type="submit" value="Предпросмотр" name="preview">
-            {% if user.is_superuser %}
-                <input type="submit" value="Опубликовать" name="publish">
-            {%  else %}
-                <input type="submit" value="Отправить на Согласование" name="send_to_approve">
-            {% endif %}
-    </div>
+{% extends 'admin/change_form.html' %} {% block submit_buttons_bottom %} {{
+block.super }}
+<div class="submit-row">
+  <input type="submit" value="Update market data" name="update_market_data" />
+  <input type="submit" value="Preview" name="preview" />
+  {% if user.is_superuser %}
+  <input type="submit" value="Publish" name="publish" />
+  {% else %}
+  <input type="submit" value="Send for approval" name="send_to_approve" />
+  {% endif %}
+</div>
 {% endblock %}

@@ -6,13 +6,13 @@ import time
 
 
 class SubscriptionForm(forms.Form):
-    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'placeholder': 'Ваш Email'}))
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'placeholder': 'Your Email'}))
 
 
 class PrepareForSendingForm(forms.Form):
-    sending_date = forms.DateField(label='Дата отправки', widget=AdminDateWidget(attrs={'id': 'id_sending_date'}))
-    sending_time = forms.TimeField(label='Время отправки', widget=AdminTimeWidget(attrs={'id': 'id_sending_time'}))
-    right_now = forms.BooleanField(label='Отправить прямо сейчас', required=False, initial=False)
+    sending_date = forms.DateField(label='Date of sending', widget=AdminDateWidget(attrs={'id': 'id_sending_date'}))
+    sending_time = forms.TimeField(label='Time of sending', widget=AdminTimeWidget(attrs={'id': 'id_sending_time'}))
+    right_now = forms.BooleanField(label='Send right now', required=False, initial=False)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -23,6 +23,6 @@ class PrepareForSendingForm(forms.Form):
             dt = datetime.combine(date, t)
             if dt <= datetime.now():
                 raise ValidationError(
-                    'Выберите дату и время в будущем'
+                    'Select data and time in the future'
                 )
 

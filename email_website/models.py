@@ -19,12 +19,12 @@ from time import sleep
 
 
 def default_random_string():
-    """Рандомная строка заданной длины для unique_id"""
+    """Random string for unique_id"""
     return get_random_string(length=15)
 
 
 def batch(iterable, n=1):
-    """Батч для отправки писем"""
+    """Batch for sending emails"""
     length = len(iterable)
     for ndx in range(0, length, n):
         yield iterable[ndx:min(ndx + n, length)]
@@ -80,45 +80,45 @@ class Article(models.Model):
     PUBLISHED = 'PB'
     NOT_APPROVED = 'NA'
     STATUS_LIST = [
-        (IN_PROGRESS, 'В прогрессе'),
-        (PUBLISHED, 'Опубликовано'),
-        (NOT_APPROVED, 'Не одобрено к публикации'),
+        (IN_PROGRESS, 'In progress'),
+        (PUBLISHED, 'Published'),
+        (NOT_APPROVED, 'Not approved for publishing'),
     ]
     pub_date = models.DateField(
         unique=True,
-        help_text='Дата выхода выпуска. Она отображается в верхнем левом углу письма'
+        help_text='Data of publication. Showing in the upper left corner of the email'
     )
     headline = models.CharField(
         max_length=200,
-        help_text='Название выпуска. Оно же тема письма',
+        help_text='Artilce name. Also the email subject',
     )
     intro_html = HTMLField(
-        help_text='Текст вступления'
+        help_text='Intro texy'
     )
     show_market = models.BooleanField(
         default=True,
-        help_text='Если галочка выключена, то рыночная информация не добавляется в статью, и market_html игнорируется.'
+        help_text='To add market information or not'
     )
 
     market_data = HTMLField(
         blank=True,
-        help_text='Информация о рынке'
+        help_text='Market info'
     )
 
     market_html = HTMLField(
         blank=True,
-        help_text='Текст про ситуацию на рынке'
+        help_text='Text about market situation'
     )
 
     writers = models.ManyToManyField(
         Writer,
-        help_text='Авторы выпуска'
+        help_text="Article's authors"
     )
     status = models.CharField(
         max_length=2,
         choices=STATUS_LIST,
         default=IN_PROGRESS,
-        help_text='Статус выпуска. Управляется только админом.'
+        help_text="Article's status. Only admin can change it."
     )
     path = models.CharField(max_length=200)
     sending_time = models.DateTimeField(default=datetime(1970, 1, 1), validators=[MinValueValidator(datetime.now)])
@@ -157,7 +157,7 @@ class Article(models.Model):
 
     def send_article(self, right_now=False):
         if self.status != Article.PUBLISHED:
-            raise KeyError('статья не опубликована, её нельзя отправить')
+            raise KeyError("article is not publihsed, you can't send it")
 
         self.add_template()  # добавили template в mailgun
         recipients = Subscription.objects.filter(
@@ -213,36 +213,36 @@ class Post(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     post_online = models.BooleanField(null=True, blank=True,
-                                      help_text='Определяет, делать ли онлайн версию статьи или нет')
+                                      help_text='To publish article online or not')
     position_in_article = models.IntegerField(
-        help_text='Порядковыый номер статьи в выпуске'
+        help_text='Positional number of the article in the newsletter'
     )
     slug = models.SlugField(blank=True)
     header = models.CharField(
         max_length=100,
-        help_text='Название раздела'
+        help_text='Name of the srection'
     )
     title = models.CharField(
         max_length=100,
         blank=True,
-        help_text='Название статьи'
+        help_text='Name of the article'
     )
     image_link = models.URLField(
         blank=True,
-        help_text='Ссылка на картинку или gif'
+        help_text='Link to the picture or gif'
     )
     image_alt = models.CharField(
         max_length=50,
         blank=True,
-        help_text='Если картинка не загрузится, будет написан этот текст'
+        help_text='This text will be showed if image failed to load'
     )
     caption = models.CharField(
         max_length=50,
         blank=True,
-        help_text='Подпись под картинкой'
+        help_text='Image caption'
     )
     html_text = HTMLField(
-        help_text='Текст статьи'
+        help_text='Text of the article'
     )
 
     def create_slug(self):
