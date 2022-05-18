@@ -20,7 +20,7 @@
   <h3 align="center">Morningly</h3>
 
   <p align="center">
-    Your open-source alternative to launch a new Morning Brew
+    Your open-source newsletter platform. Create your own Morning Brew
     <br />
     <a href="https://github.com/garrrikkotua/morningly"><strong>Explore the docs »</strong></a>
     <br />
