@@ -39,7 +39,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-This is an open-source platform to launch your own Morning Brew like newsletter. It has all needed features built-in: creating new issues, web portal, role management, delayed sending, subscribe, unsubscribe, automated market info fetching and other cool stuff.
+This is an open-source platform to launch your own [Morning Brew](https://www.morningbrew.com/) like newsletter. It has all needed features built-in: creating new issues, web portal, role management, delayed sending, subscribe, unsubscribe, automated market info fetching and other cool stuff.
 
 Originally, I used this project internally to host my own russian-speaking version of Morning Brew. I got around 200 users, send more than 10K emails and more than 60% opening rate, so this platform is quite real world tested :)
 
