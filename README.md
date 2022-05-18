@@ -13,7 +13,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/garrrrikkotua/Morningly">
+  <a href="https://github.com/garrrikkotua/morningly">
     <img src="static/email_website/vector_logo.svg" alt="Logo" width="300">
   </a>
 
@@ -22,14 +22,14 @@
   <p align="center">
     Your open-source alternative to launch a new Morning Brew
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/garrrikkotua/morningly"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/garrrikkotua/morningly">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/garrrikkotua/morningly/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/garrrikkotua/morningly/issues">Request Feature</a>
   </p>
 </div>
 
@@ -60,7 +60,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/garrrikkotua/Morningly.git
+   git clone https://github.com/garrrikkotua/morningly.git
    ```
 2. Install pip packages
    ```sh
@@ -93,19 +93,19 @@ Docker, Dokku and Heroku deployment tutorials are to be added soon.
 
 Igor Kotua - [@garrrikkotua](https://twitter.com/garrrikkotua) - kotuaigor@gmail.com
 
-Project Link: [https://github.com/garrrikkotua/Morningly](https://github.com/garrrikkotua/Morningly)
+Project Link: [https://github.com/garrrikkotua/morningly](https://github.com/garrrikkotua/morningly)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/garrrrikkotua/Morningly.svg?style=for-the-badge
-[contributors-url]: https://github.com/garrrrikkotua/Morningly/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/garrrrikkotua/Morningly.svg?style=for-the-badge
-[forks-url]: https://github.com/garrrrikkotua/Morningly/network/members
-[stars-shield]: https://img.shields.io/github/stars/garrrrikkotua/Morningly.svg?style=for-the-badge
-[stars-url]: https://github.com/garrrrikkotua/Morningly/stargazers
-[issues-shield]: https://img.shields.io/github/issues/garrrrikkotua/Morningly.svg?style=for-the-badge
-[issues-url]: https://github.com/garrrrikkotua/Morningly/issues
-[license-shield]: https://img.shields.io/github/license/garrrrikkotua/Morningly.svg?style=for-the-badge
-[license-url]: https://github.com/garrrrikkotua/Morningly/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/garrrikkotua/morningly.svg?style=for-the-badge
+[contributors-url]: https://github.com/garrrikkotua/morningly/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/garrrikkotua/morningly.svg?style=for-the-badge
+[forks-url]: https://github.com/garrrikkotua/morningly/network/members
+[stars-shield]: https://img.shields.io/github/stars/garrrikkotua/morningly.svg?style=for-the-badge
+[stars-url]: https://github.com/garrrikkotua/morningly/stargazers
+[issues-shield]: https://img.shields.io/github/issues/garrrikkotua/morningly.svg?style=for-the-badge
+[issues-url]: https://github.com/garrrikkotua/morningly/issues
+[license-shield]: https://img.shields.io/github/license/garrrikkotua/morningly.svg?style=for-the-badge
+[license-url]: https://github.com/garrrikkotua/morningly/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [product-screenshot]: static/email_website/morningly_landing_image.png
