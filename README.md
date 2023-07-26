@@ -111,4 +111,4 @@ Project Link: [https://github.com/garrrikkotua/morningly](https://github.com/gar
 [product-screenshot]: static/email_website/morningly_landing_image.png
 
 ## Other
-The project is not really active.
+The project is not really active. But it was fun : )
