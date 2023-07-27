@@ -109,3 +109,6 @@ Project Link: [https://github.com/garrrikkotua/morningly](https://github.com/gar
 [license-url]: https://github.com/garrrikkotua/morningly/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [product-screenshot]: static/email_website/morningly_landing_image.png
+
+## Other
+The project is not really active. But it was fun : )
